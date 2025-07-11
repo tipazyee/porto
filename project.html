@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Latifa Azzahra</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    /* Body & Layout */
+    body {
+      font-family: 'Quicksand', 'Roboto', sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding-top: 70px; /* space for fixed header */
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* Glassmorphism Navbar */
+    .glass-navbar {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: saturate(180%) blur(12px);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1030;
+    }
+
+    .glass-navbar.scrolled {
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .sitename {
+      background: linear-gradient(90deg, #0d6efd, #6f42c1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    /* Navbar links */
+    #navbarLinks .nav-link {
+      transition: color 0.3s, background-color 0.3s;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    #navbarLinks .nav-link:hover,
+    #navbarLinks .nav-link.active {
+      background: linear-gradient(90deg, #0d6efd22, #6f42c122);
+      color: #0d6efd !important;
+    }
+
+    /* Mobile menu toggle button */
+    .hamburger-btn {
+      position: relative;
+      width: 36px;
+      height: 24px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .hamburger-icon,
+    .hamburger-icon::before,
+    .hamburger-icon::after {
+      display: block;
+      background-color: #0d6efd;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      content: '';
+    }
+
+    .hamburger-icon {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .hamburger-icon::before {
+      top: -8px;
+    }
+
+    .hamburger-icon::after {
+      top: 8px;
+    }
+
+    .hamburger-btn[aria-expanded="true"] .hamburger-icon {
+      background-color: transparent;
+    }
+
+    .hamburger-btn[aria-expanded="true"] .hamburger-icon::before {
+      transform: rotate(45deg);
+      top: 0;
+    }
+
+    .hamburger-btn[aria-expanded="true"] .hamburger-icon::after {
+      transform: rotate(-45deg);
+      top: 0;
+    }
+
+    /* Project Cards */
+    .project-card {
+      border: none;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgb(13 110 253 / 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgb(13 110 253 / 0.3);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      border-bottom: 4px solid #0d6efd;
+      border-radius: 1rem 1rem 0 0;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .project-info {
+      padding: 1.25rem 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-info h5 {
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #0d6efd;
+      transition: color 0.3s ease;
+    }
+
+    .project-info p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 0;
+      flex-grow: 1;
+    }
+
+    .project-card:hover .project-info h5 {
+      color: #6f42c1;
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+      .project-card img {
+        height: 180px;
+      }
+    }
+
+    /* Footer Glassmorphism */
+    .glass-footer {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid #e3e3e3;
+      transition: background-color 0.3s ease;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      margin-top: auto;
+      text-align: center;
+      color: #555;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top glass-navbar">
+    <div class="container-xl d-flex align-items-center justify-content-between py-2">
+      <a href="index.html" class="d-flex align-items-center text-decoration-none">
+        <i class="bi bi-person-circle fs-2 text-primary"></i>
+        <h1 class="ms-2 sitename fs-4 mb-0 fw-bold">Latifa Azzahra</h1>
+      </a>
+
+      <nav>
+        <ul class="nav nav-pills gap-3" id="navbarLinks">
+          <li class="nav-item"><a href="landing.html" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="app.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="skil.html" class="nav-link">Skills</a></li>
+          <li class="nav-item"><a href="project.html" class="nav-link active">Portfolio</a></li>
+          <li class="nav-item"><a href="contak.html" class="nav-link">Contact</a></li>
+        </ul>
+
+        <!-- Mobile menu toggle -->
+        <button class="hamburger-btn d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu"
+          aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="hamburger-icon"></span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Offcanvas mobile menu -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileMenuLabel">Menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="nav flex-column gap-3">
+          <li class="nav-item"><a href="landing.html" class="nav-link" data-bs-dismiss="offcanvas">Dashboard</a></li>
+          <li class="nav-item"><a href="app.html" class="nav-link" data-bs-dismiss="offcanvas">About</a></li>
+          <li class="nav-item"><a href="skil.html" class="nav-link" data-bs-dismiss="offcanvas">Skills</a></li>
+          <li class="nav-item"><a href="project.html" class="nav-link active" data-bs-dismiss="offcanvas">Portfolio</a></li>
+          <li class="nav-item"><a href="contak.html" class="nav-link" data-bs-dismiss="offcanvas">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <!-- Main Content -->
+  <main class="container py-5">
+    <h2 class="mb-5 text-center fw-bold">My Projects</h2>
+    <div class="row g-4">
+      <!-- Project 1 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="detail-posyandu.html" class="text-decoration-none">
+          <div class="project-card h-100">
+            <img src="assets/img/project/project1.png" alt="Aplikasi Website Posyandu Kartika" />
+            <div class="project-info">
+              <h5>Posyandu Kartika Website</h5>
+              <p>A responsive website for Posyandu Kartika with interactive features and clean UI.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="detail-ecocash.html" class="text-decoration-none">
+          <div class="project-card h-100">
+            <img src="assets/img/project/project2.png" alt="UI/UX Aplikasi Ecocash" />
+            <div class="project-info">
+              <h5>Ecocash App UI/UX</h5>
+              <p>Designing intuitive user interfaces and experiences for the Ecocash mobile application.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="detail-bandar-lampung.html" class="text-decoration-none">
+          <div class="project-card h-100">
+            <img src="assets/img/project/project3.png" alt="UI/UX Website Bandar Lampung" />
+            <div class="project-info">
+              <h5>Bandar Lampung Website</h5>
+              <p>Modern website design for Bandar Lampung city with focus on accessibility and responsiveness.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="detail-sewa-penginapan.html" class="text-decoration-none">
+          <div class="project-card h-100">
+            <img src="assets/img/project/project4.png" alt="Aplikasi Website Sewa Penginapan" />
+            <div class="project-info">
+              <h5>Rental Accommodation Website</h5>
+              <p>Booking platform for rental accommodations with user-friendly search and booking system.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+<!-- Project 5 -->
+<div class="col-md-6 col-lg-4">
+  <a href="detail-pajak.html" class="text-decoration-none">
+    <div class="project-card h-100 shadow-sm rounded-4 overflow-hidden bg-white">
+      <img src="assets/img/project/project5.png" alt="Aplikasi Web Perhitungan Pajak Pegawai" class="w-100" style="height: 220px; object-fit: cover;" />
+      <div class="project-info p-3">
+        <h5 class="mb-2 text-primary fw-bold">Aplikasi Perhitungan Pajak Pegawai</h5>
+        <p class="text-secondary mb-0" style="font-size: 0.95rem;">
+          Aplikasi web untuk Dinas Kominfo Pringsewu menggunakan PHP CodeIgniter 4 dan Bootstrap. Memudahkan input dan pengelolaan pajak pegawai dengan sistem login terpisah untuk admin dan pegawai, serta database MySQL terintegrasi.
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- Project 7 -->
+<div class="col-md-6 col-lg-4">
+  <a href="detail-coffe.html" class="text-decoration-none">
+    <div class="project-card h-100 shadow-sm rounded-4 overflow-hidden bg-white">
+      <img src="assets/img/project/project7.png" alt="Beans and Bites" class="w-100" style="height: 220px; object-fit: cover;" />
+      <div class="project-info p-3">
+        <h5 class="mb-2 text-primary fw-bold">Web Beans and Bites</h5>
+        <p class="text-secondary mb-0" style="font-size: 0.95rem;">
+          Beans & Bites adalah aplikasi berbasis web yang dirancang untuk memudahkan pelanggan dalam melihat menu kopi dan dessert
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+
+      <!-- Project 6 -->
+      <div class="col-md-6 col-lg-4">
+        <a href="detail-jadwal.html" class="text-decoration-none">
+          <div class="project-card h-100">
+            <img src="assets/img/project/project6.png" alt="Dashboard Jadwalku" />
+            <div class="project-info">
+              <h5>Jadwalku Dashboard</h5>
+              <p>Interactive schedule dashboard for managing daily tasks and appointments efficiently.</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="glass-footer">
+    <div class="container">
+      <div class="mb-3">
+        <a href="https://instagram.com/zzhrtpz" class="fs-4 text-primary mx-2" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://linkedin.com/in/tipa-zahraa-514470294" class="fs-4 text-primary mx-2" target="_blank" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="mailto:tipazahraa@gmail.com" class="fs-4 text-primary mx-2" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      </div>
+      <div class="small text-secondary">
+        © 2025 Latifa Azzahra. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Navbar glass effect on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Hamburger toggle aria-expanded for animation
+    const hamburgerBtn = document.querySelector('.hamburger-btn');
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', () => {
+        const expanded = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+        hamburgerBtn.setAttribute('aria-expanded', !expanded);
+      });
+    }
+  </script>
+</body>
+
+</html>

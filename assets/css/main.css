@@ -1,0 +1,58 @@
+body {
+  font-family: 'Quicksand', 'Roboto', Arial, sans-serif;
+  background: #f8fafc;
+}
+.header {
+  z-index: 1030;
+}
+.sitename {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.hero .display-4 {
+  font-family: 'Quicksand', sans-serif;
+}
+.hero .text-primary {
+  font-weight: bold;
+}
+.hero .btn {
+  min-width: 140px;
+}
+.hero .img-fluid {
+  border-radius: 1.5rem;
+}
+.card {
+  border: none;
+  border-radius: 1rem;
+}
+.card .card-body {
+  padding: 2rem 1.5rem;
+}
+.progress {
+  height: 10px;
+  background: #e9ecef;
+  border-radius: 5px;
+}
+.progress-bar {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.bg-light {
+  background: #f4f7fa !important;
+}
+footer {
+  font-size: 1rem;
+}
+@media (max-width: 991px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 0.5rem;
+  }
+  .navmenu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
